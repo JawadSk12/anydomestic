@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+/*
+  ANY DOMESTIC HELP — design tokens
+  ----------------------------------------------------
+  Palette named for what it does, not how it looks:
+  - ink       deep pine-black text, warmer than pure navy or grey
+  - paper     warm off-white background
+  - verified  primary brand teal-green — the platform's core promise
+  - amber     warm gold accent for calls to action, used sparingly
+  - coral     used only for genuine alerts / destructive actions
+  - line      hairline border colour
+*/
+
+@theme {
+    --font-display: "Fraunces", ui-serif, Georgia, serif;
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+    --color-ink: #14231f;
+    --color-ink-soft: #3d4a45;
+    --color-slate: #5b6764;
+    --color-paper: #fbf8f4;
+    --color-paper-raised: #ffffff;
+    --color-paper-sunken: #f2ede4;
+    --color-line: #e4dfd6;
+
+    --color-verified-50: #e9f4f1;
+    --color-verified-100: #cbe6de;
+    --color-verified-300: #6fada0;
+    --color-verified-500: #0e6f5c;
+    --color-verified-600: #0b5c4c;
+    --color-verified-700: #094a3d;
+    --color-verified-900: #06322a;
+
+    --color-amber-100: #f7e6c4;
+    --color-amber-300: #eabf72;
+    --color-amber-500: #d98e2b;
+    --color-amber-600: #b8741d;
+
+    --color-coral-100: #f3ddd6;
+    --color-coral-500: #c1533a;
+    --color-coral-600: #a4432c;
+
+    --shadow-soft: 0 1px 2px rgba(20, 35, 31, 0.04), 0 8px 24px -8px rgba(20, 35, 31, 0.12);
+    --shadow-lifted: 0 4px 8px rgba(20, 35, 31, 0.06), 0 20px 40px -12px rgba(20, 35, 31, 0.18);
+
+    --radius-card: 1.25rem;
+    --radius-control: 0.65rem;
+
+    --animate-fade-up: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    --animate-fade-in: fade-in 0.5s ease both;
+    --animate-scale-in: scale-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+    --animate-stamp: stamp-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+
+    @keyframes fade-up {
+        from {
+            opacity: 0;
+            transform: translateY(14px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes scale-in {
+        from {
+            opacity: 0;
+            transform: scale(0.96);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes stamp-in {
+        0% {
+            opacity: 0;
+            transform: scale(1.4) rotate(-8deg);
+        }
+
+        60% {
+            opacity: 1;
+            transform: scale(0.94) rotate(2deg);
+        }
+
+        100% {
+            opacity: 1;
+            transform: scale(1) rotate(-4deg);
+        }
+    }
+}
+
+@layer base {
+    * {
+        border-color: var(--color-line);
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+
+    body {
+        background: var(--color-paper);
+        color: var(--color-ink);
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: var(--font-display);
+        color: var(--color-ink);
+        letter-spacing: -0.01em;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-verified-500);
+        outline-offset: 3px;
+        border-radius: 2px;
+    }
+
+    ::selection {
+        background: var(--color-amber-300);
+        color: var(--color-ink);
+    }
+}
+
+@layer utilities {
+    .container-page {
+        width: 100%;
+        max-width: 80rem;
+        margin-inline: auto;
+        padding-inline: 1.25rem;
+    }
+
+    @media (min-width: 640px) {
+        .container-page {
+            padding-inline: 2rem;
+        }
+    }
+
+    .text-balance {
+        text-wrap: balance;
+    }
+}
